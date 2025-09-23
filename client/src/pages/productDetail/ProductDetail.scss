@@ -1,0 +1,120 @@
+.ProductDetail {
+    margin-top: 40px;
+    
+
+    .product-layout {
+        display: flex;
+        gap: 40px; // Image aur info ke beech thoda gap
+
+        .product-img {
+            position: relative;
+            flex-shrink: 0;   // Taaki image container sikude nahi
+            width: 50%;       // Apne parent (.product-layout) ki 50% jagah lega
+            max-width: 500px; // Ek maximum limit, taaki bahut badi screen par ajeeb na lage
+
+            // Aspect ratio ko maintain karne ke liye padding-top trick
+            // Isse height, width ke hisaab se apen adjust hogi
+            padding-top: 50%; 
+
+            .img-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain;
+                    transform: scale(0.9);
+                }
+            }
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .cart-options {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                margin-top: 20px;
+
+                .quantity-selector {
+                    border: 1px solid var(--secondary-text-color);
+                    width: fit-content;
+                    display: flex;
+                    align-items: center;
+
+                    .btn {
+                        padding: 8px 16px;
+                        background-color: #eee;
+                        color: var(--primary-text-color);
+                        display: inline-block;
+                        cursor: pointer;
+                        font-size: 1.2rem;
+                        user-select: none;
+
+                        &:hover {
+                            background-color: #ddd;
+                        }
+
+                        &:active {
+                            background-color: #eee;
+                        }
+                    }
+
+                    .quantity {
+                        text-align: center;
+                        width: 60px;
+                        display: inline-block;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .return-policy {
+                border-top: 1px dashed #ccc;
+                color: var(--secondary-text-color);
+                font-size: 0.8rem;
+                margin-top: 20px;
+                padding-top: 10px;
+
+                ul {
+                    list-style: circle;
+                    padding-inline-start: 20px;
+
+                    li {
+                        margin-top: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Media Query for smaller screens
+@media screen and (max-width: 768px) {
+    .ProductDetail {
+        .product-layout {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-img {
+            width: 90%;
+            padding-top: 90%; // Square aspect ratio ke liye width ke barabar
+            margin-bottom: 30px;
+        }
+
+        .product-info {
+            width: 100%;
+        }
+    }
+}
